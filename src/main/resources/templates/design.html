@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Taco Cloud</title>
+</head>
+<body>
+	<center>
+		<h1>Design your taco! Pizza with you. Take it and enjoyed.</h1>
+	</center>
+	<img th:src="@{/images/TacoCloud.png}" />
+
+	<div>
+		<form method="post" th:object="${design}">
+			<span style=color:red  th:if="${#fields.hasErrors('ingredients')}"
+			  th:errors="*{ingredients}">Ingredients error</span>
+			<table>			
+			<tr>
+			<td>
+			<h3>Designate your wrap:</h3>			
+			<div th:each="ingredient : ${WRAP}">
+				<input type="checkbox" th:field="*{ingredients}" th:value="${ingredient.id}"/>	
+				<span th:text="${ingredient.name}">Ingredient</span>		
+			</div>
+			<br>
+			</td>
+		
+			<td>
+			<h3>Pick your protein:</h3>
+			<div th:each="ingredient : ${PROTEIN}">
+				<input type="checkbox" th:field="*{ingredients}" th:value="${ingredient.id}"/>	
+				<span th:text="${ingredient.name}">Ingredient</span>		
+			</div>
+			<br>
+			</td>
+			</tr>
+			
+			<tr>
+			<td>
+			<h3>Determine your veggies:</h3>
+			<div th:each="ingredient : ${VEGGIES}">
+				<input type="checkbox" th:field="*{ingredients}" th:value="${ingredient.id}"/>	
+				<span th:text="${ingredient.name}">Ingredient</span>		
+			</div>
+			<br>
+			</td>
+			
+			<td>
+			<h3>Choose your cheese:</h3>
+			<div th:each="ingredient : ${CHEESE}">
+				<input type="checkbox" th:field="*{ingredients}" th:value="${ingredient.id}"/>	
+				<span th:text="${ingredient.name}">Ingredient</span>		
+			</div>
+			<br>
+			</td>
+			</tr>
+			
+			<tr>
+			<td>
+			<h3>Select your sauce:</h3>
+			<div th:each="ingredient : ${SAUCE}">
+				<input type="checkbox" th:field="*{ingredients}" th:value="${ingredient.id}"/>	
+				<span th:text="${ingredient.name}">Ingredient</span>		
+			</div>
+			<br>
+			</td>
+			</tr>
+			</table>
+			
+			<h3>Name your taco creation:</h3>
+			<span style=color:red  th:if="${#fields.hasErrors('name')}"
+				  th:errors="*{name}">Name errorr</span>
+			<input type="text" th:field="*{name}"/>			
+			<input type="submit"/>
+		</form>	
+	</div>
+</body>
+</html>
